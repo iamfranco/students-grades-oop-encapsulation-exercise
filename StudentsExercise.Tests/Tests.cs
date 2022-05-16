@@ -11,6 +11,62 @@ namespace StudentsExercise.Tests
         }
 
         [Test]
+        public void Instantiate_Student_With_Null_As_Name_Should_Throw_Exception()
+        {
+            Student student;
+            Action act = () => student = new Student(null, 'B', 1);
+            act.Should().Throw<ArgumentNullException>();
+        }
+
+        [Test]
+        public void Instantiate_Student_With_EmptyString_As_Name_Should_Throw_Exception()
+        {
+            Student student;
+            Action act = () => student = new Student("", 'B', 1);
+            act.Should().Throw<ArgumentNullException>();
+        }
+
+        [Test]
+        public void Instantiate_Student_With_WhiteSpace_As_Name_Should_Throw_Exception()
+        {
+            Student student;
+            Action act = () => student = new Student("   ", 'B', 1);
+            act.Should().Throw<ArgumentNullException>();
+        }
+
+        [Test]
+        public void Instantiate_Student_With_Grade_Z_Should_Throw_Exception()
+        {
+            Student student;
+            Action act = () => student = new Student("Peter", 'Z', 1);
+            act.Should().Throw<ArgumentException>();
+        }
+
+        [Test]
+        public void Instantiate_Student_With_Grade_Underscore_Should_Throw_Exception()
+        {
+            Student student;
+            Action act = () => student = new Student("Peter", '_', 1);
+            act.Should().Throw<ArgumentException>();
+        }
+
+        [Test]
+        public void Instantiate_Student_With_Group_Zero_Should_Throw_Exception()
+        {
+            Student student;
+            Action act = () => student = new Student("Peter", 'B', 0);
+            act.Should().Throw<ArgumentException>();
+        }
+
+        [Test]
+        public void Instantiate_Student_With_Group_6_Should_Throw_Exception()
+        {
+            Student student;
+            Action act = () => student = new Student("Peter", 'B', 6);
+            act.Should().Throw<ArgumentException>();
+        }
+
+        [Test]
         public void Student_Name_Should_Return_Name()
         {
             string studentName = "Peter";
